@@ -4,7 +4,13 @@ This is a simple web application that counts and displays page visits using the 
 
 ## Project Architecture
 
-![alt text](architecture.png)
+![image](https://github.com/user-attachments/assets/68f8a5c0-12be-4e88-a941-845f1d4a7c4c)
+
+
+## Interface
+
+![image](https://github.com/user-attachments/assets/d420bfc7-1160-406b-a586-5a1667b4befd)
+
 
 ## Features
 
