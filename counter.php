@@ -1,5 +1,5 @@
 <?php
-$host = "url-shortener.c1wke6cc8q8b.eu-west-1.rds.amazonaws.com"
+$host = "url-shortener.c1wke6cc8q8b.eu-west-1.rds.amazonaws.com";
 $db   = "PageVisit";
 $user = 'admin';
 $pass = 'foaeio29034i9mdkf';
