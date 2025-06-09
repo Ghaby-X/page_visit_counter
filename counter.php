@@ -1,8 +1,21 @@
 <?php
-$host = "url-shortener.c1wke6cc8q8b.eu-west-1.rds.amazonaws.com";
-$db   = "PageVisit";
-$user = 'admin';
-$pass = 'foaeio29034i9mdkf';
+// Load environment variables from .env file
+$envFile = __DIR__ . '/.env';
+if (file_exists($envFile)) {
+    $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    foreach ($lines as $line) {
+        if (strpos($line, '=') !== false && strpos($line, '#') !== 0) {
+            list($key, $value) = explode('=', $line, 2);
+            $_ENV[trim($key)] = trim($value);
+        }
+    }
+}
+
+// Database connection using environment variables
+$host = $_ENV['DB_HOST'] ?? 'localhost';
+$db   = $_ENV['DB_NAME'] ?? 'PageVisit';
+$user = $_ENV['DB_USER'] ?? 'admin';
+$pass = $_ENV['DB_PASS'] ?? '';
 $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
 
 try {

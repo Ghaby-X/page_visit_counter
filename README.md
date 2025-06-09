@@ -11,6 +11,7 @@ This is a simple web application that counts and displays page visits using the 
 - Tracks and displays the number of page visits
 - Clean, responsive user interface
 - Persistent storage using MySQL database
+- Environment variable configuration for security
 
 ## Requirements
 
@@ -37,7 +38,9 @@ This is a simple web application that counts and displays page visits using the 
    INSERT INTO page_visits (id, visit_count) VALUES (1, 0);
    ```
 
-3. Update the database connection details in `counter.php` if needed.
+3. Configure your environment:
+   - Copy `.env.example` to `.env`
+   - Update the database connection details in `.env`
 
 4. Access the application through your web browser.
 
