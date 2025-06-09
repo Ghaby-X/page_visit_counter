@@ -1,3 +1,4 @@
+<?php
 $db   = "PageVisit";
 $user = 'admin';
 $pass = 'foaeio29034i9mdkf';
