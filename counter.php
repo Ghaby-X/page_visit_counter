@@ -1,4 +1,15 @@
 <?php
+// Simple logging function
+function log_event($message) {
+    $log_file = __DIR__ . '/counter.log';
+    $timestamp = date('d/M/Y:H:i:s O');
+    $ip = $_SERVER['REMOTE_ADDR'] ?? 'Unknown';
+    $entry = "$ip - - [$timestamp] $message" . PHP_EOL;
+    file_put_contents($log_file, $entry, FILE_APPEND);
+}
+
+log_event("[INFO] Page visit started");
+
 // Load environment variables from .env file
 $envFile = __DIR__ . '/.env';
 if (file_exists($envFile)) {
@@ -20,16 +31,20 @@ $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
 
 try {
     $pdo = new PDO($dsn, $user, $pass);
+    log_event("[INFO] Database connected successfully");
 } catch (PDOException $e) {
+    log_event("[ERROR] Database connection failed: " . $e->getMessage());
     die("Database connection failed: " . $e->getMessage());
 }
 
 // Update the visit count
 $pdo->exec("UPDATE page_visits SET visit_count = visit_count + 1 WHERE id = 1");
+log_event("[INFO] Visit count incremented in the database");
 
 // Get the updated count
 $stmt = $pdo->query("SELECT visit_count FROM page_visits WHERE id = 1");
 $visit_count = $stmt->fetchColumn();
+log_event("[INFO] Current visit count: $visit_count");
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +102,7 @@ $visit_count = $stmt->fetchColumn();
 <body>
 
 <div class="counter-box">
-    <h1>Welcome to Our Site</h1>
+    <h1>Welcome</h1>
     <p>This page has been visited</p>
     <div class="counter-value"><?= number_format($visit_count) ?></div>
     <p>times</p>
@@ -96,3 +111,4 @@ $visit_count = $stmt->fetchColumn();
 
 </body>
 </html>
+<?php log_event("[INFO] Page rendered completely"); ?>
