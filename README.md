@@ -12,12 +12,17 @@ This is a simple web application that counts and displays page visits using the 
 ![image](https://github.com/user-attachments/assets/d420bfc7-1160-406b-a586-5a1667b4befd)
 
 
+## Logs Dashboard
+
+![alt text](cloudwatch_logs.png)
+
 ## Features
 
 - Tracks and displays the number of page visits
 - Clean, responsive user interface
 - Persistent storage using MySQL database
 - Environment variable configuration for security
+- Commprehensive logging and monitoring
 
 ## Requirements
 
